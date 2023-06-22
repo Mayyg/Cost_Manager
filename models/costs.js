@@ -9,7 +9,6 @@ const costSchema = new mongoose.Schema({
     year: Number,
     month: Number,
     day: Number,
-    id: String,
     description: String,
     category: {
         type: String,
