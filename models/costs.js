@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const costSchema = new mongoose.Schema({
+    id:Number,
     user_id: Number,
     year: Number,
     month: Number,
@@ -16,4 +17,4 @@ const costSchema = new mongoose.Schema({
     },
     sum: Number,
 });
-const costs = mongoose.model('costs', costSchema);
+module.exports = mongoose.model('costs', costSchema);
