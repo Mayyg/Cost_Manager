@@ -17,4 +17,4 @@ const costSchema = new mongoose.Schema({
     },
     sum: Number,
 });
-const Cost = mongoose.model('costs', costSchema);
+const costs = mongoose.model('costs', costSchema);
