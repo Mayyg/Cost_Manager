@@ -6,17 +6,13 @@ const addCostRouter = express.Router();
 const costs = require('../models/costs');
 const users = require('../models/users');
 
-addCostRouter.post('/', async (req, res) => {
-    const { 
-        user_id, 
-        year, 
-        month, 
-        day, 
-        description, 
-        category, 
-        sum 
-    } = req.body;
 
+
+// Handling POST requests to the root path ("/") of the add cost route
+addCostRouter.post("/", async (req, res, next) => { 
+  // Extracting the user_id from the request body
+  const { user_id } = req.body; 
+    
     try {
         const user = await User.findOne({ id: user_id });
       
