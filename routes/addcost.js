@@ -9,14 +9,14 @@ const users = require('../models/users');
 addCostRouter.post('/', async (req, res) => {
   const { user_id, year, month, day, description, category, sum } = req.body;
 
-  try {
+ /* try {
     
     const isUser = await users.exists({ id: user_id }); 
     if (!isUser) { 
       const error = new Error("User does not exist"); 
       error.status = 400; 
       throw error; 
-    }
+    } */
 
     // Create a new cost item
     const newCost = new Cost({
