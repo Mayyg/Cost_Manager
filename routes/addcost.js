@@ -5,28 +5,29 @@ const express = require('express');
 const addCostRouter = express.Router();
 const costs = require('../models/costs');
 const users = require('../models/users');
+const { categories } = ["food", "health", "housing", "sport", "education", "transportation", "other"];
+addCostRouter.get("/", async (req, res, next) => {
+    try {
+        const costs = await costs.find(req.query);
 
-addCostRouter.post('/addcost', (req, res) => {
-    const { user_id, year, month, day, description, category, sum } = req.body;
-
-    const newCost = {
-        id: 64,
-        user_id: user_id,
-        year: year,
-        month: month,
-        day: day,
-        description: description,
-        category: category,
-        sum: sum
-    };
-
-    newCost.save()
-        .then((addedCost) => {
-            res.json(addedCost);
-        })
-        .catch((error) => {
-            res.status(500).json({ error: 'Failed to add the cost item.' });
+        const add = {};
+        categories.forEach((category) => {
+            add[category] = [];
         });
+
+        costs.forEach((cost) => {
+            const costItem = {
+                day: cost.day,
+                sum: cost.sum,
+                description: cost.description,
+            };
+            add[cost.category].push(costItem);
+        });
+
+        res.json(add);
+    } catch (error) {
+        next(error);
+    }
 });
 
 module.exports = addCostRouter;
