@@ -6,16 +6,15 @@ const Cost = require("../models/costs");
 const User = require("../models/users");
 const categories = ["food", "health", "housing", "sport", "education", "transportation", "other"];
 
-addCostRouter.post("/addcost", async (req, res) => {
+addCostRouter.post("/", async (req, res) => {
     try {
         const { user_id, year, month, day, description, category, sum } = req.body;
         const id = Math.floor(Math.random() * 1000000);
-
-        // Validate the category
+        
         if (!categories.includes(category)) {
             return res.status(400).json({ error: "Invalid category" });
         }
-
+        
         const newCost = {
             id,
             user_id,
