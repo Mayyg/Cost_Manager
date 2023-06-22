@@ -29,9 +29,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/addcost', addCost);
 app.use('/report', report);
 app.use('/about', about);
-app.use((err, req, res, next) => {
-  res.status(err.status || 500).json({ message: err.message });
-});
+
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
