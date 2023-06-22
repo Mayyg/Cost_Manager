@@ -1,22 +1,34 @@
 //Amit Maor 315406710
 //May Gabay 322621590
 
+// Importing the mongoose library for MongoDB interaction
 const mongoose = require("mongoose");
 
-const costSchema = new mongoose.Schema({
+// Importing the "categories" object from the "../constants" file
+const {categories} = require("../constants");
+
+// This code is defining a Mongoose schema 
+const costsSchema = new mongoose.Schema(
+  {
     id: Number,
     user_id: Number,
     year: Number,
     month: Number,
     day: Number,
     description: String,
-    category: {
-        type: String,
-        enum: ['food', 'health', 'housing', 'sport', 'education', 'transportation', 'other'],
-    },
     sum: Number,
-});
+    category: {
+      type: String,
+      /* Note: The enum property restricts the possible values of the category field
+         to the ones specified in the imported categories constant.*/
+      enum: categories,
+    },
+  },
+  { versionKey: false }
+);
 
-const Cost = mongoose.model("Cost", costSchema);
-module.exports = Cost;
+// Creating a Mongoose model named "costsModel" for the "costs" collection in the MongoDB database using the defined "costsSchema"
+const costsModel = mongoose.model("costs", costsSchema);
 
+// Exporting the costsModel as a module
+module.exports = costsModel;
