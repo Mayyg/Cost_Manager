@@ -66,10 +66,22 @@ addCostRouter.post("/", async (req, res, next) => {
     */
     
     // Create a new cost document based on the request body and save it to the database
-    const cost = await new costsModel({...req.body, id}).save(); 
+    //const cost = await new costsModel({...req.body, id}).save(); 
+   const cost = {
+            id,
+            user_id,
+            year,
+            month,
+            day,
+            description,
+            category,
+            sum,
+        }; 
+   const savedCost = await cost.save(); 
 
+     
     // Send a JSON response with the saved cost document and pass any caught error to the error-handling middleware
-    res.json(cost); 
+    res.json(savedCost); 
   } catch (error) {
     next(error); 
   }
