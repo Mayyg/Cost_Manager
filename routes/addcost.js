@@ -79,7 +79,7 @@ addCostRouter.post("/", async (req, res, next) => {
 
      
     // Send a JSON response with the saved cost document and pass any caught error to the error-handling middleware
-    res.json(savedCost); 
+    res.json(cost); 
   } catch (error) {
     next(error); 
   }
