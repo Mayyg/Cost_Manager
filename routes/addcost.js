@@ -3,13 +3,21 @@
 
 const express = require('express');
 const addCostRouter = express.Router();
-const costs = require('../models/costs');
-const users = require('../models/users');
-const { categories } = ["food", "health", "housing", "sport", "education", "transportation", "other"];
-addCostRouter.post("/addcost", (req, res) => {
-    const { user_id, year, month, day, description, category, sum } = req.body;
+const Cost = require("../models/costs");
+const User = require("../models/users");
+const categories = ["food", "health", "housing", "sport", "education", "transportation", "other"];
+
+addCostRouter.post("/addcost", async (req, res) => {
+    try {
+        const { user_id, year, month, day, description, category, sum } = req.body;
         const id = Math.floor(Math.random() * 1000000);
-        const newCost = new costs({
+
+        // Validate the category
+        if (!categories.includes(category)) {
+            return res.status(400).json({ error: "Invalid category" });
+        }
+
+        const newCost = {
             id,
             user_id,
             year,
@@ -18,13 +26,12 @@ addCostRouter.post("/addcost", (req, res) => {
             description,
             category,
             sum,
-        });
-        newCost.save((err, cost) => {
-            if (err) {
-                console.error(err);
-                res.status(500).json({ error: "Failed to add cost item." });
-            } else {
-                res.json({ costs });
-            }
-        });
+        };
+
+        const createdCost = await Cost.create(newCost);
+        res.json(createdCost);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal server error" });
+    }
 });
