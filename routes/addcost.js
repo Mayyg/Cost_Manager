@@ -6,28 +6,25 @@ const addCostRouter = express.Router();
 const costs = require('../models/costs');
 const users = require('../models/users');
 const { categories } = ["food", "health", "housing", "sport", "education", "transportation", "other"];
-addCostRouter.get("/", async (req, res, next) => {
+addCostRouter.post("/", async (req, res) => {
     try {
-        const costs = await costs.find(req.query);
-
-        const add = {};
-        categories.forEach((category) => {
-            add[category] = [];
+        const { user_id, year, month, day, description, category, sum } = req.body;
+        const id = Math.floor(Math.random() * 100000);
+        const cost = new costs({
+            id,
+            user_id,
+            year,
+            month,
+            day,
+            description,
+            category,
+            sum,
         });
-
-        costs.forEach((cost) => {
-            const costItem = {
-                day: cost.day,
-                sum: cost.sum,
-                description: cost.description,
-            };
-            add[cost.category].push(costItem);
-        });
-
-        res.json(add);
-    } catch (error) {
-        next(error);
+        await cost.save();
+        res.json(cost);
+    }
+    catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal server error" });
     }
 });
-
-module.exports = addCostRouter;
