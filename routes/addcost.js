@@ -34,10 +34,10 @@ addCostRouter.post('/', async (req, res) => {
 
     // Send the added cost item as a JSON response
     res.json(savedCost);
-  } catch (error) {
+ /* } catch (error) {
     console.error('Error creating cost item:', error);
     res.status(500).json({ error: 'Failed to create cost item' });
-  }
+  } */
 });
 
 module.exports = addCostRouter;
