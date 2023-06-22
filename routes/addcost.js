@@ -11,8 +11,8 @@ addCostRouter.post('/', async (req, res) => {
 
   try {
     
-    const isUserExist = await usersModel.exists({ id: user_id }); 
-    if (!isUserExist) { 
+    const isUser = await usersModel.exists({ id: user_id }); 
+    if (!isUser) { 
       const error = new Error("User does not exist"); 
       error.status = 400; 
       throw error; 
