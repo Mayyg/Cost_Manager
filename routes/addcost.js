@@ -3,15 +3,15 @@
 
 const express = require('express');
 const addCostRouter = express.Router();
-const Cost = require('../models/costs');
-const User = require('../models/users');
+const costs = require('../models/costs');
+const users = require('../models/users');
 
 addCostRouter.post('/', async (req, res) => {
   const { user_id, year, month, day, description, category, sum } = req.body;
 
   try {
     
-    const isUser = await User.exists({ id: user_id }); 
+    const isUser = await users.exists({ id: user_id }); 
     if (!isUser) { 
       const error = new Error("User does not exist"); 
       error.status = 400; 
