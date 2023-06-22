@@ -10,4 +10,4 @@ const userSchema = new mongoose.Schema({
     last_name: String,
     birthday: String,
 });
-const User = mongoose.model('users', userSchema);
+const users = mongoose.model('users', userSchema);
