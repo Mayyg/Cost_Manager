@@ -3,8 +3,8 @@
 
 const express = require('express');
 const addCostRouter = express.Router();
-const Cost = require('./models/costs');
-const User = require('./models/users');
+const Cost = require('../models/costs');
+const User = require('../models/users');
 
 addCostRouter.post('/', async (req, res) => {
   const { user_id, year, month, day, description, category, sum } = req.body;
