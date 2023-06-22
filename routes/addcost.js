@@ -1,7 +1,7 @@
 //Amit Maor 315406710
 //May Gabay 322621590
 const express = require('express');
-const addCostRouter = express.Router();
+const addCostRouter = Router();
 const Cost = require("../models/costs");
 const User = require("../models/users");
 const categories = ["food", "health", "housing", "sport", "education", "transportation", "other"];
@@ -27,11 +27,13 @@ addCostRouter.post("/addcost", async (req, res) => {
             sum,
         };
 
-        const createdCost = await Cost.create(newCost);
-        res.json(createdCost);
+      const savedCost = await cost.save()
+        res.json(savedCost);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Internal server error" });
     }
 });
 module.exports = addCostRouter;
+
+
