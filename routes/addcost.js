@@ -28,7 +28,7 @@ addCostRouter.post("/", async (req, res, next) => {
   try {
     let id = (new Date()).getTime();
    
-   const newCost = new Cost({
+   const newCost = new costsModel({
       user_id,
       year,
       month,
