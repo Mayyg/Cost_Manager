@@ -17,8 +17,6 @@ const costsSchema = new mongoose.Schema(
       enum: categories,
     },
   },
-  { versionKey: false }
 );
-
 const costsModel = mongoose.model("costs", costsSchema);
 module.exports = costsModel;
