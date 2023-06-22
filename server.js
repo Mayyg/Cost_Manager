@@ -14,15 +14,11 @@ const reportRouter = require('./routes/report');
 const app = express();
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', true);
-console.log('mongoose module is available');
 const crypto = require('crypto');
-try{
-
     const connectionParams={
         useNewUrlParser: true,
         useUnifiedTopology: true,
     }
-
 app.use(express.json());
     mongoose.connect('mongodb+srv://maor:pass@cluster0.kq68toy.mongodb.net/mongodb?retryWrites=true&w=majority'
         ,connectionParams);
