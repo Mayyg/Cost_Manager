@@ -17,4 +17,5 @@ const costSchema = new mongoose.Schema({
     },
     sum: Number,
 });
-module.exports = mongoose.model('costs', costSchema);
+const costs = mongoose.model("costs", costSchema);
+module.exports = costs;
