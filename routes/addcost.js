@@ -7,37 +7,41 @@ const costs = require('../models/costs');
 const users = require('../models/users');
 
 addCostRouter.post('/', async (req, res) => {
-  const { user_id, year, month, day, description, category, sum } = req.body;
+  try {
+    // Extract the parameters from the request body
+    const { user_id, year, month, day, description, category, sum } = req.body;
 
- /* try {
-    
-    const isUser = await users.exists({ id: user_id }); 
-    if (!isUser) { 
-      const error = new Error("User does not exist"); 
-      error.status = 400; 
-      throw error; 
-    } */
+    // Check if the user_id exists in the users collection
+    const user = await users.findOne({ id: user_id });
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
 
-    // Create a new cost item
-    const newCost = new Cost({
+    // Generate a random id for the cost item
+    const id = Math.random().toString(36).substring(7);
+
+    // Create a new cost document
+    const newCost = new costs({
       user_id,
       year,
       month,
       day,
+      id,
       description,
       category,
-      sum,
+      sum
     });
 
-    // Save the new cost item to the database
+    // Save the new cost document
     const savedCost = await newCost.save();
 
-    // Send the added cost item as a JSON response
-    res.json(savedCost);
- /* } catch (error) {
-    console.error('Error creating cost item:', error);
-    res.status(500).json({ error: 'Failed to create cost item' });
-  } */
+    // Return the newly added cost item as the response
+    res.json({ cost: savedCost });
+  } catch (error) {
+    // Handle any errors that occur during the process
+    res.status(500).json({ error: 'An error occurred' });
+  }
 });
 
 module.exports = addCostRouter;
+
