@@ -6,6 +6,8 @@ const mongoose = require("mongoose");
 
 // Importing the "categories" object from the "../constants" file
 //const {categories} = require("../constants");
+const categories = ["food", "health", "housing", "sport", "education", "transportation", "other"];
+
 
 // This code is defining a Mongoose schema 
 const costsSchema = new mongoose.Schema(
