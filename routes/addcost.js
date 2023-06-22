@@ -31,7 +31,7 @@ const addCostRouter = express.Router();
 // Handling POST requests to the root path ("/") of the add cost route
 addCostRouter.post("/", async (req, res, next) => { 
   // Extracting the user_id from the request body
-  const { user_id } = req.body; 
+ const { user_id, year, month, day, description, category, sum } = req.body; 
 
   try {
     // Validating the request body using the add cost validations. if there is an error throws the error
@@ -74,22 +74,8 @@ addCostRouter.post("/", async (req, res, next) => {
 
      ///
 
+    const cost = await new costsModel({id, user_id,year,month,day,description, category,sum}).save(); 
 
-     const data = req.body; 
-
-     
-     
-   const costData = {
-            id,
-            data.user_id,
-            data.year,
-            data.month,
-            data.day,
-            data.description,
-            data.category,
-            data.sum,
-        }; 
-   const savedCost = await costData.save(); 
 
      
     // Send a JSON response with the saved cost document and pass any caught error to the error-handling middleware
