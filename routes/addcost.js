@@ -24,17 +24,15 @@ addCostRouter.post('/', async (req, res) => {
             res.status(400).json('user doesn\'t exists');
             return;
         }
-        const cost = new Cost({
-        user_id,
-        year,
-        month,
-        day,
-        description,
-        category,
-        sum,
-        });
-        const savedCost = await cost.save()
-        res.json(savedCost);
+       let id = (new Date()).getTime();
+
+
+
+    // Create a new cost document based on the request body and save it to the database
+    const cost = await new costsModel({...req.body, id}).save(); 
+
+    // Send a JSON response with the saved cost document and pass any caught error to the error-handling middleware
+    res.json(cost);
     } catch (error) {
         res.status(500).json("failed to add cost");
     }
