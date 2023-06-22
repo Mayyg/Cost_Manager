@@ -4,8 +4,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
-
-const mongoose = require('mongoose');
 mongoose.set('strictQuery', true);
 const crypto = require('crypto');
     const connectionParams={
