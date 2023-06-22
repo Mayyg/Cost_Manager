@@ -3,8 +3,6 @@
 
 const mongoose = require("mongoose");
 const categories = ["food", "health", "housing", "sport", "education", "transportation", "other"];
-
-
 const costsSchema = new mongoose.Schema(
   {
     id: Number,
