@@ -14,8 +14,7 @@ const reportRouter = require('./routes/report');
 const app = express();
 app.use(express.json());
 const MONGODBUR = 'mongodb+srv://amitmay:amitmay1@cluster0.2xxxc54.mongodb.net/costs?retryWrites=true&w=majority';
-mongoose
-    .connect(MONGODBUR, {
+mongoose.connect(MONGODBUR, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true,
