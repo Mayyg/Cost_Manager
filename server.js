@@ -19,16 +19,16 @@ mongoose.connect('mongodb+srv://amitmay:amitmay1@cluster0.2xxxc54.mongodb.net/co
     console.error('Error connecting to the server:', error);
   });
 
-const addCost = require('./routes/addcost');
-const report = require('./routes/report');
-const about = require('./routes/about');
-const app = express();
+const addCostRouter = require('./routes/addcost');
+const reportRouter = require('./routes/report');
+const aboutRouter = require('./routes/about');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use('/addcost', addCost);
-app.use('/report', report);
-app.use('/about', about);
+
+app.use('/addcost', addCostRouter);
+app.use('/report', reportRouter);
+app.use('/about', aboutRouter);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
