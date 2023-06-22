@@ -5,9 +5,9 @@ const mongoose = require('mongoose');
 const app = express();
 
 app.use(express.json());
-const MONGODB_URI = 'mongodb+srv://amitmay:amitmay1@cluster0.2xxxc54.mongodb.net/costs?retryWrites=true&w=majority';
+const MONGODBUR = 'mongodb+srv://amitmay:amitmay1@cluster0.2xxxc54.mongodb.net/costs?retryWrites=true&w=majority';
 mongoose
-    .connect(MONGODB_URI, {
+    .connect(MONGODBUR, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true,
