@@ -12,19 +12,16 @@ const aboutRouter = require('./routes/about');
 const addcostRouter = require('./routes/addcost');
 const reportRouter = require('./routes/report');
 const app = express();
+
 app.use(express.json());
-const MONGODBUR = 'mongodb+srv://amitmay:amitmay1@cluster0.2xxxc54.mongodb.net/costs?retryWrites=true&w=majority';
-mongoose.connect(MONGODBUR, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useCreateIndex: true,
-    })
-    .then(() => {
-        console.log('Connected to MongoDB');
-    })
-    .catch((error) => {
-        console.error('Failed to connect to MongoDB', error);
+    mongoose.connect('mongodb+srv://maor:pass@cluster0.kq68toy.mongodb.net/mongodb?retryWrites=true&w=majority'
+        ,connectionParams);
+    const db = mongoose.connection;
+    db.on('error', () => {console.log('error connect to the server- please check your internet connection')});
+    db.once('open', () => {
+        console.log('connected to the ATLAS data base!');
     });
+
 app.set('views', path.join(__dirname, 'views'));
 app.use(logger('dev'));
 app.use(express.json());
