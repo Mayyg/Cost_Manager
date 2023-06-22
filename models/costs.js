@@ -2,10 +2,9 @@
 //May Gabay 322621590
 
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
 
 const costSchema = new mongoose.Schema({
-    id:Number,
+    id: Number,
     user_id: Number,
     year: Number,
     month: Number,
@@ -17,5 +16,7 @@ const costSchema = new mongoose.Schema({
     },
     sum: Number,
 });
-const costs = mongoose.model("costs", costSchema);
-module.exports = costs;
+
+const Cost = mongoose.model("Cost", costSchema);
+module.exports = Cost;
+
