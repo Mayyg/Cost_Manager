@@ -1,21 +1,18 @@
-//Amit Maor 315406710
-//May Gabay 322621590
-
 const express = require("express");
 const about = express.Router();
 about.get("/", async (req, res) => {
     const developers = [
         {
-            firstname: 'amit' ,
-            lastname:'maor' ,
-            id:'315406710' ,
-            email:'info.amit@gmail.com'
+            firstname: '' ,
+            lastname:'' ,
+            id:'' ,
+            email:''
         },
         {
-            firstname:'may' ,
-            lastname:'gabay' ,
-            id:'322621590' ,
-            email: 'maygabaym@gmail.com'
+            firstname:'' ,
+            lastname:'' ,
+            id:'' ,
+            email: ''
         },
     ];
         res.json(developers);
