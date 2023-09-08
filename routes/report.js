@@ -1,6 +1,3 @@
-//Amit Maor 315406710
-//May Gabay 322621590
-
 const express = require("express");
 const allCosts = require("../models/costs"); 
 const allUsers = require("../models/users");
