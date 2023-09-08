@@ -1,6 +1,3 @@
-//Amit Maor 315406710
-//May Gabay 322621590
-
 const mongoose = require("mongoose");
 const categories = ["food", "health", "housing", "sport", "education", "transportation", "other"];
 const costsSchema = new mongoose.Schema(
